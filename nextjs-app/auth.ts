@@ -5,7 +5,6 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { connectToDatabase } from './lib/db';
 import client from './lib/db/client';
 import User from './lib/db/models/user.model';
-
 import NextAuth, { type DefaultSession } from 'next-auth';
 import authConfig from './auth.config';
 
