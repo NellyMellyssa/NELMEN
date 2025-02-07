@@ -9,6 +9,26 @@ const Price = (field: string) =>
       (value) => /^\d+(\.\d{2})?$/.test(formatNumberWithDecimal(value)),
       `${field} must have exactly two decimal places (e.g., 49.99)`
     );
+
+const MongoId = z
+  .string()
+  .regex(/^[0-9a-fA-F]{24}$/, { message: 'Invalid MongoDB ID' });
+
+// Review Schema should be defined before ProductInputSchema
+export const ReviewInputSchema = z.object({
+  product: MongoId,
+  user: MongoId,
+  isVerifiedPurchase: z.boolean(),
+  title: z.string().min(1, 'Title is required'),
+  comment: z.string().min(1, 'Comment is required'),
+  rating: z.coerce
+    .number()
+    .int()
+    .min(1, 'Rating must be at least 1')
+    .max(5, 'Rating must be at most 5'),
+});
+
+// Product Input Schema
 export const ProductInputSchema = z.object({
   name: z.string().min(3, 'Name must be at least 3 characters'),
   slug: z.string().min(3, 'Slug must be at least 3 characters'),
@@ -37,14 +57,14 @@ export const ProductInputSchema = z.object({
   ratingDistribution: z
     .array(z.object({ rating: z.number(), count: z.number() }))
     .max(5),
-  reviews: z.array(z.string()).default([]),
+  reviews: z.array(ReviewInputSchema).default([]),
   numSales: z.coerce
     .number()
     .int()
     .nonnegative('Number of sales must be a non-negative number'),
 });
 
-// Order Item
+// Order Item Schema
 export const OrderItemSchema = z.object({
   clientId: z.string().min(1, 'clientId is required'),
   product: z.string().min(1, 'Product is required'),
@@ -65,8 +85,7 @@ export const OrderItemSchema = z.object({
   color: z.string().optional(),
 });
 
-//cart
-
+// Shipping Address Schema
 export const ShippingAddressSchema = z.object({
   fullName: z.string().min(1, 'Full name is required'),
   street: z.string().min(1, 'Address is required'),
@@ -77,6 +96,7 @@ export const ShippingAddressSchema = z.object({
   country: z.string().min(1, 'Country is required'),
 });
 
+// Cart Schema
 export const CartSchema = z.object({
   items: z
     .array(OrderItemSchema)
@@ -92,7 +112,7 @@ export const CartSchema = z.object({
   expectedDeliveryDate: z.optional(z.date()),
 });
 
-// USER
+// USER Schema
 const UserName = z
   .string()
   .min(2, { message: 'Username must be at least 2 characters' })
