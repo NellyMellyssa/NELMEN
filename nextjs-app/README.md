@@ -264,5 +264,15 @@ NEXT_PUBLIC_APP_DESCRIPTION=An Amazon clone built with Next.js and MongoDB
         3.  create components/shared/header/sidebar.tsx
         4.  update components/shared/header/index.tsx
     24. create search Page
+
+        1. update lib/utils.ts
+        2. update components/shared/header/search.tsx
+        3. install packages:
+           npx shadcn@latest add collapsible
+        4. create components/shared/collapsible-on-mobile.tsx
+        5. create components/shared/product/product-sort-selector.tsx
+        6. update lib/actions/product.actions.ts
+        7. create app/(root)/search/page.tsx
+
     25. Add Theme color
     26. Create Admin Dashboard
