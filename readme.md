@@ -246,9 +246,23 @@ NEXT_PUBLIC_APP_DESCRIPTION=An Amazon clone built with Next.js and MongoDB
         11. create app/(root)/product/[slug]/review-list.tsx
         12. update app/(root)/product/[slug]/page.tsx
 
-    21. Create Order History page
+    21. Create Order History page (wait to do it for now as placer order not yet done)
     22. Update user name
+
+        1. update lib/validator.ts
+        2. update types/index.ts
+        3. update lib/actions/user.actions.ts
+        4. create app/(root)/account/manage/page.tsx
+        5. create app/(root)/account/manage/name/profile-form.tsx
+        6. create app/(root)/account/manage/name/page.tsx
+           create app/(root)/account/page.tsx
+
     23. create category sidebar
+        1.  install packages
+            npx shadcn@latest add drawer
+        2.  update app/globals.css
+        3.  create components/shared/header/sidebar.tsx
+        4.  update components/shared/header/index.tsx
     24. create search Page
     25. Add Theme color
     26. Create Admin Dashboard
