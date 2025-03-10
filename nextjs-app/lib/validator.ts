@@ -1,6 +1,17 @@
 import { z } from 'zod';
 import { formatNumberWithDecimal } from './utils';
 
+// Shipping Address Schema (Moved up)
+export const ShippingAddressSchema = z.object({
+  fullName: z.string().min(1, 'Full name is required'),
+  street: z.string().min(1, 'Address is required'),
+  city: z.string().min(1, 'City is required'),
+  postalCode: z.string().min(1, 'Postal code is required'),
+  province: z.string().min(1, 'Province is required'),
+  phone: z.string().min(1, 'Phone number is required'),
+  country: z.string().min(1, 'Country is required'),
+});
+
 // Common
 const Price = (field: string) =>
   z.coerce
@@ -64,6 +75,19 @@ export const ProductInputSchema = z.object({
     .nonnegative('Number of sales must be a non-negative number'),
 });
 
+// Order Input Schema
+export const OrderInputSchema = z.object({
+  userId: MongoId,
+  items: z.array(
+    z.object({
+      productId: MongoId,
+      quantity: z.number().int().min(1, 'Quantity must be at least 1'),
+    })
+  ),
+  totalAmount: Price('Total amount'),
+  shippingAddress: ShippingAddressSchema, // Used here after declaration
+});
+
 // Order Item Schema
 export const OrderItemSchema = z.object({
   clientId: z.string().min(1, 'clientId is required'),
@@ -83,17 +107,6 @@ export const OrderItemSchema = z.object({
   price: Price('Price'),
   size: z.string().optional(),
   color: z.string().optional(),
-});
-
-// Shipping Address Schema
-export const ShippingAddressSchema = z.object({
-  fullName: z.string().min(1, 'Full name is required'),
-  street: z.string().min(1, 'Address is required'),
-  city: z.string().min(1, 'City is required'),
-  postalCode: z.string().min(1, 'Postal code is required'),
-  province: z.string().min(1, 'Province is required'),
-  phone: z.string().min(1, 'Phone number is required'),
-  country: z.string().min(1, 'Country is required'),
 });
 
 // Cart Schema

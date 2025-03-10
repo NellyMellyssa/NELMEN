@@ -275,4 +275,31 @@ NEXT_PUBLIC_APP_DESCRIPTION=An Amazon clone built with Next.js and MongoDB
         7. create app/(root)/search/page.tsx
 
     25. Add Theme color
+        1. app/loading.tsx
+        2. app/error.tsx
+        3. app/not-found.tsx
+        4. install packages to add theme color:
+           npx shadcn@latest add sheet
+           npm i next-themes --legacy-peer-deps
+        5. update app/layout.tsx
+        6. create hooks/use-color-store.ts
+        7. create components/shared/color-provider.tsx
+        8. create components/shared/theme-provider.tsx
+        9. update components/shared/client-providers.tsx
+        10. create components/shared/header/theme-switcher.tsx
+        11. update components/shared/header/menu.tsx
     26. Create Admin Dashboard
+        1.  install packages:
+            npx shadcn@latest add skeleton calendar
+            npm i recharts --legacy-peer-deps
+        2.  update types/index.ts
+        3.  update lib/actions/order.actions.ts (wait to do it for now)
+        4.  create app/admin/admin-nav.ts
+        5.  update components/shared/header/menu.tsx
+        6.  create app/admin/layout.tsx
+        7.  create app/admin/overview/table-chart.tsx
+        8.  create app/admin/overview/data-range-picker.tsx
+        9.  create app/admin/overview/sales-area-chart.tsx
+        10. create app/admin/overview/sales-category-pie-chart.tsx
+        11. create app/admin/overview/overview-report.tsx
+        12. create/app/admin/overview/page.tsx
