@@ -225,7 +225,14 @@ NEXT_PUBLIC_APP_DESCRIPTION=An Amazon clone built with Next.js and MongoDB
         10. update app/checkout/page.tsx
         11. update lib/actions/order.actions.ts
 
-    17. placer order (wait to do it for now)
+    17. placer order
+
+        1. update lib/validator.ts
+        2. update types/index.ts
+        3. create lib/db/models/order.model.ts
+        4. update lib/actions/order.actions.ts
+        5. update app/checkout/checkout-form.tsx
+
     18. pay Order By paypal(wait to do it by now)
     19. pay Order By Stripe(wait to do it by now_18 to 20)
 
@@ -246,7 +253,13 @@ NEXT_PUBLIC_APP_DESCRIPTION=An Amazon clone built with Next.js and MongoDB
         11. create app/(root)/product/[slug]/review-list.tsx
         12. update app/(root)/product/[slug]/page.tsx
 
-    21. Create Order History page (wait to do it for now as placer order not yet done)
+    21. Create Order History page
+        1. install packages:
+           npm i query-string --legacy-peer-deps
+        2. update lib/utils
+        3. update lib/actions/order.actions.ts
+        4. create components/shared/pagination.tsx
+        5. create app/(root)/account/orders/page.tsx
     22. Update user name
 
         1. update lib/validator.ts
@@ -293,7 +306,7 @@ NEXT_PUBLIC_APP_DESCRIPTION=An Amazon clone built with Next.js and MongoDB
             npx shadcn@latest add skeleton calendar
             npm i recharts --legacy-peer-deps
         2.  update types/index.ts
-        3.  update lib/actions/order.actions.ts (wait to do it for now)
+        3.  update lib/actions/order.actions.ts
         4.  create app/admin/admin-nav.ts
         5.  update components/shared/header/menu.tsx
         6.  create app/admin/layout.tsx

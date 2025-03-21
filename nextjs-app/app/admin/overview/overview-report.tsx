@@ -9,15 +9,24 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table';
 import { calculatePastDate, formatDateTime, formatNumber } from '@/lib/utils';
 
 import SalesCategoryPieChart from './sales-category-pie-chart';
 
 import React, { useEffect, useState, useTransition } from 'react';
 import { DateRange } from 'react-day-picker';
-//import { getOrderSummary } from '@/lib/actions/order.actions';
+import { getOrderSummary } from '@/lib/actions/order.actions';
 import SalesAreaChart from './sales-area-chart';
 import { CalendarDateRangePicker } from './date-range-picker';
+import { IOrderList } from '@/types';
 import ProductPrice from '@/components/shared/product/product-price';
 import TableChart from './table-chart';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -30,17 +39,16 @@ export default function OverviewReport() {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<{ [key: string]: any }>();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [isPending, startTransition] = useTransition();
   useEffect(() => {
     if (date) {
       startTransition(async () => {
-        setData(date);
+        setData(await getOrderSummary(date));
       });
     }
   }, [date]);
 
-  if (!data)
+  if (!data || isPending)
     return (
       <div className="space-y-4">
         <div>
@@ -187,6 +195,45 @@ export default function OverviewReport() {
             </CardHeader>
             <CardContent>
               <SalesCategoryPieChart data={data.topSalesCategories} />
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Recent Sales</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Buyer</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Total</TableHead>
+                    <TableHead>Actions</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {data.latestOrders.map((order: IOrderList) => (
+                    <TableRow key={order._id}>
+                      <TableCell>
+                        {order.user ? order.user.name : 'Deleted User'}
+                      </TableCell>
+
+                      <TableCell>
+                        {formatDateTime(order.createdAt).dateOnly}
+                      </TableCell>
+                      <TableCell>
+                        <ProductPrice price={order.totalPrice} plain />
+                      </TableCell>
+
+                      <TableCell>
+                        <Link href={`/admin/orders/${order._id}`}>
+                          <span className="px-2">Details</span>
+                        </Link>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </CardContent>
           </Card>
         </div>
