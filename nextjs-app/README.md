@@ -254,12 +254,14 @@ NEXT_PUBLIC_APP_DESCRIPTION=An Amazon clone built with Next.js and MongoDB
         12. update app/(root)/product/[slug]/page.tsx
 
     21. Create Order History page
+
         1. install packages:
            npm i query-string --legacy-peer-deps
         2. update lib/utils
         3. update lib/actions/order.actions.ts
         4. create components/shared/pagination.tsx
         5. create app/(root)/account/orders/page.tsx
+
     22. Update user name
 
         1. update lib/validator.ts
@@ -288,6 +290,7 @@ NEXT_PUBLIC_APP_DESCRIPTION=An Amazon clone built with Next.js and MongoDB
         7. create app/(root)/search/page.tsx
 
     25. Add Theme color
+
         1. app/loading.tsx
         2. app/error.tsx
         3. app/not-found.tsx
@@ -301,7 +304,9 @@ NEXT_PUBLIC_APP_DESCRIPTION=An Amazon clone built with Next.js and MongoDB
         9. update components/shared/client-providers.tsx
         10. create components/shared/header/theme-switcher.tsx
         11. update components/shared/header/menu.tsx
+
     26. Create Admin Dashboard
+
         1.  install packages:
             npx shadcn@latest add skeleton calendar
             npm i recharts --legacy-peer-deps
@@ -316,3 +321,78 @@ NEXT_PUBLIC_APP_DESCRIPTION=An Amazon clone built with Next.js and MongoDB
         10. create app/admin/overview/sales-category-pie-chart.tsx
         11. create app/admin/overview/overview-report.tsx
         12. create/app/admin/overview/page.tsx
+
+    27. admin products
+
+        1.  npx shadcn@latest add alert-dialog
+        2.  create components/shared/delete-dialog.tsx
+        3.  update lib/actions/product.actions.ts
+        4.  create app/admin/products/product-list.tsx
+        5.  create app/admin/products/page.tsx
+
+    28. create update products
+
+        1.  install packages:
+            npm i uploadthing @uploadthing/react --legacy-peer-deps
+            npx shadcn@latest add checkbox
+        2.  create app/api/uploadthing/core.ts
+        3.  create app/api/uploadthing/route.ts
+        4.  create lib/uploadthing.ts
+        5.  update lib/actions/product.actions.ts
+        6.  create app/admin/products/product-form.tsx
+        7.  create app/admin/products/create/page.tsx
+        8.  create app/admin/products/[id]/page.tsx
+
+    29. admin orders
+
+        1.  update next.config.ts
+        2.  update tailwind.config.ts
+        3.  update app/admin/products/product-form.tsx
+        4.  update lib/actions/order.actions.ts
+        5.  create app/admin/orders/page.tsx
+        6.  update components/shared/pagination.tsx
+        7.  update app/admin/products/product-list.tsx
+        8.  update app/(root)/account/manage/name/profile-form.tsx
+        9.  update app/(root)/search/page.tsx
+        10. update hooks/use-cart-store.ts
+
+    30. mark orders as paid delivered (wait to do it by now)
+
+    31. admin users
+
+        1. update lib/actions/user.actions.ts
+        2. create app/admin/users/page.tsx
+
+    32. edit user
+        1.  update lib/validator.ts
+        2.  update lib/constants.ts
+        3.  update lib/actions/user.actions.ts
+        4.  create app/admin/users/[id]/user-edit-form.tsx
+        5.  create app/admin/users/[id]/page.tsx
+    33. admin web pages
+
+        1. install packages:
+           npm i react-markdown --legacy-peer-deps
+        2. update lib/validator.ts
+        3. update types/index.ts
+        4. update lib/data.ts
+        5. create lib/db/models/web-page.model.ts
+        6. update lib/db/seed.ts
+        7. create lib/actions/web-page-actions.ts
+        8. create app/admin/web-pages/page.tsx
+        9. update app/globals.css
+        10. create app/(root)/page/[slug]/page.tsx
+
+    34. create update web pages
+
+        1. Install packages:
+           npm i react-markdown-editor-lite --legacy-peer-deps
+        2. update lib/actions/web-page.actions.ts
+        3. create app/admin/web-pages/web-page-form.tsx
+        4. create app/admin/web-pages/[id]/page.tsx
+        5. create app/admin/web-pages/create/page.tsx
+
+    35. make website multilingual
+        ("Make the website support multiple languages for content and user interface.")
+
+    36. create settings page

@@ -15,12 +15,15 @@ import {
 import { IOrderInput, OrderItem, ShippingAddress } from '@/types';
 import { AVAILABLE_DELIVERY_DATES } from '../constants';
 import Order from './models/order.model';
+import WebPage from './models/web-page.model';
 
 loadEnvConfig(cwd());
 
 const main = async () => {
   try {
-    const { products, users, reviews } = data;
+    const { products, users, reviews, webPages } = data;
+    await WebPage.deleteMany();
+    await WebPage.insertMany(webPages);
     await connectToDatabase(process.env.MONGODB_URI);
 
     await User.deleteMany();

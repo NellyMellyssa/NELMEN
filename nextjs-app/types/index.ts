@@ -9,6 +9,7 @@ import {
   UserSignInSchema,
   UserSignUpSchema,
   OrderInputSchema,
+  WebPageInputSchema,
 } from '@/lib/validator';
 import { z } from 'zod';
 
@@ -22,6 +23,9 @@ export type IReviewDetails = IReviewInput & {
 };
 
 export type IProductInput = z.infer<typeof ProductInputSchema>;
+
+export type IWebPageInput = z.infer<typeof WebPageInputSchema>; // ✅ Correct placement
+
 export type Data = {
   users: IUserInput[];
   products: IProductInput[];
@@ -41,9 +45,10 @@ export type Data = {
     buttonCaption: string;
     isPublished: boolean;
   }[];
+  webPages: IWebPageInput[]; // ✅ Added inside Data type
 };
 
-//Order
+// Order
 export type IOrderInput = z.infer<typeof OrderInputSchema>;
 export type IOrderList = IOrderInput & {
   _id: string;
@@ -57,7 +62,7 @@ export type OrderItem = z.infer<typeof OrderItemSchema>;
 export type Cart = z.infer<typeof CartSchema>;
 export type ShippingAddress = z.infer<typeof ShippingAddressSchema>;
 
-// user
+// User
 export type IUserInput = z.infer<typeof UserInputSchema>;
 export type IUserSignIn = z.infer<typeof UserSignInSchema>;
 export type IUserSignUp = z.infer<typeof UserSignUpSchema>;
